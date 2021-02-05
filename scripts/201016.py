@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 #import dataset
 #ignore invalid data (-9999)
 glodap = pd.read_csv(
-    'C:/Users/dnalab/Desktop/mini tutorial/201009/GLODAPv2.2020_Indian_Ocean.csv',
+    '../raw_data/GLODAPv2.2020_Indian_Ocean.csv',
     na_values=-9999)
 
 #%% make a scatterplot tco2 / talk
@@ -77,5 +77,3 @@ plt.tight_layout()
 fig.align_ylabels()
 #save the figure, also possible as .pdf or other file type
 plt.savefig("mpl_scatter.png")
-
-#%%

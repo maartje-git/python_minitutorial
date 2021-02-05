@@ -4,7 +4,7 @@ from scipy.stats import linregress
 import numpy as np
 from scipy.optimize import least_squares
 
-filename = "C:/Users/dnalab/Desktop/mini tutorial/201127/co2_mhd_surface-flask_1_ccgg_event.txt"
+filename = "../raw_data/co2_mhd_surface-flask_1_ccgg_event.txt"
 
 #making a function out of it
 def get_flask_data(filename):
@@ -80,7 +80,7 @@ def xco2_fit(coeffs, datenum):
     xco2 = (
         datenum * slope 
         + intercept
-        +sine_stretch * np.abs(np.sin((datenum - sine_shift) * np.pi / 365.25))
+        + sine_stretch * np.abs(np.sin((datenum - sine_shift) * np.pi / 365.25))
     )
     return xco2
 

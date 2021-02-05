@@ -1,7 +1,7 @@
 import xarray as xr
 
 # import dataset
-gebco = xr.open_dataset("C:/Users/dnalab/Desktop/mini tutorial/201106/gebco_2020_n50.9_s41.7_w-12.7_e-0.1.nc")
+gebco = xr.open_dataset("../raw_data/gebco_2020_n50.9_s41.7_w-12.7_e-0.1.nc")
 
 #change axis label
 gebco.elevation.attrs["long_name"] = "Elevation"

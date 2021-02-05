@@ -7,9 +7,9 @@ import numpy as np
 
 # Import data
 rws = pd.read_excel(
-    "C:/Users/dnalab/Desktop/mini tutorial/201113/RWS-NIOZ North Sea data v6-1 for SDG14-3-1.xlsx", na_values=-999,
+    "../raw_data/RWS-NIOZ North Sea data v6-1 for SDG14-3-1.xlsx", na_values=-999,
 )
-gebco = xr.open_dataset("C:/Users/dnalab/Desktop/mini tutorial/201113/gebco_2020_noordzee.nc")
+gebco = xr.open_dataset("../raw_data/gebco_2020_noordzee.nc")
 
 #%%Do per-station analysis
 def per_station(station):

@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt, dates as mdates
 from scipy.stats import linregress
 import numpy as np
 
-filename = "C:/Users/dnalab/Desktop/mini tutorial/201127/co2_mhd_surface-flask_1_ccgg_event.txt"
+filename = "../raw_data/co2_mhd_surface-flask_1_ccgg_event.txt"
 
 with open(filename, "r") as f:  #open file read-only, automatically closed after using
     raw_data = f.read()

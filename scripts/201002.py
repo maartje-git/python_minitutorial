@@ -7,7 +7,7 @@ t=np.array(t_list)
 # import text in a super basic way
 # skip header skips the names of the columns, 2 lines in this case.
 # you can also skip specific rows =[1,5,6]
-data = np.genfromtxt('C:/Users/dnalab/Desktop/mini tutorial/201002/titration1.txt', skip_header=2)
+data = np.genfromtxt('../raw_data/titration1.txt', skip_header=2)
 
 # pull out individual columns
 vol = data[:,0]

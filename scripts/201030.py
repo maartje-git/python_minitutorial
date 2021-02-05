@@ -3,7 +3,7 @@ import pandas as pd, numpy as np
 from scipy import stats
 
 data = pd.read_csv(
-    "C:/Users/dnalab/Desktop/mini tutorial/201030/MgCa_data_field.csv")
+    "../raw_data/MgCa_data_field.csv")
 
 #edit things in code, so you don't have to change everything seperately
 data.rename(columns={"Del-CO32-": "delCO3", "T": "temperature"}, inplace=True)

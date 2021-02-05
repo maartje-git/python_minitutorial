@@ -3,7 +3,7 @@ import pandas as pd
 #import dataset
 #ignore invalid data (-9999)
 data = pd.read_csv(
-    'C:/Users/dnalab/Desktop/mini tutorial/201009/GLODAPv2.2020_Indian_Ocean.csv',
+    '../raw_data/GLODAPv2.2020_Indian_Ocean.csv',
     na_values=-9999)
 surface = data['depth'] < 20
 
@@ -15,7 +15,7 @@ data['ts'] = data['temperature'] * data['salinity']
 # change the sep(erator) from , (default) to a tab
 # skip the first 55 row, because it has irrelevant data
 cocco = pd.read_csv(
-    'C:/Users/dnalab/Desktop/mini tutorial/201009/Poulton-etal_2018.tab',
+    '../raw_data/Poulton-etal_2018.tab',
     sep='\t', skiprows=55)
 
 
@@ -54,15 +54,12 @@ cocco = cocco.rename(columns=mapper)
 cocco.loc[cocco['PI'] == 'Daniels' , 'coccolith_count'].plot.hist()
 
 #Save with new column names
-cocco.to_csv('C:/Users/dnalab/Desktop/mini tutorial/201009/Poulton_v2.csv')
+cocco.to_csv('../raw_data//Poulton_v2.csv')
 
 #%% read an excel file
 #tell which column is the index (otherwise it will number it from 1 to ...)
 #let it recognize dates with parse_dates
 msl = pd.read_excel(
-    'C:/Users/dnalab/Desktop/mini tutorial/201009/csiro_alt_gmsl_yr_2015.xlsx',
+    '../raw_data/csiro_alt_gmsl_yr_2015.xlsx',
     index_col=0, parse_dates=True)
 msl.plot()
-
-
-
