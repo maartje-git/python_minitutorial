@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 # import file
 file_to_use = "titration1"
-data = np.genfromtxt("../raw_data/" + file_to_use + ".txt", skip_header=2)   #skips first 2 lines
+data = np.genfromtxt("python_minitutorial/raw_data/" + file_to_use + ".txt", skip_header=2)   #skips first 2 lines
 
 volume = data[:,0]  #: is all rows, column 1
 emf = data[:,1]
