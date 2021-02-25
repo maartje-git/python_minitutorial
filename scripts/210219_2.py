@@ -2,6 +2,7 @@ import numpy as np, pandas as pd
 from matplotlib import pyplot as plt
 import cmocean #oceanography colormaps
 from scipy import interpolate, stats
+import cmocean
 
 #%% Import data as a DataFrame
 glodap = pd.read_csv("python_minitutorial/raw_data/GLODAPv2.2020_Indian_Ocean.csv", na_values=-9999)
@@ -134,7 +135,7 @@ ax.plot(
         label="spline"
         )
 cbar = plt.colorbar(sc)
-cbar.set_label('oxygen (mg/L)')
+cbar.set_label('oxygen (mg $L^{-1})$')
 plt.gca().invert_yaxis()                #invert axis for depth
 ax.set_xlabel('salinity (ppt)')
 ax.set_ylabel('depth (m)')
