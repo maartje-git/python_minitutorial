@@ -145,27 +145,27 @@ import re #to be able to use regular expressions
 
 # regular expression for decimal minutes format
 dmf1 = re.match("(\d+)°(\d+\.\d+)'([NS])", "50°30.00'S")
-lat = round(float(dmf1.group(1)) + float(dmf1.group(2)) / 60, 4)
+lat = float(dmf1.group(1)) + float(dmf1.group(2)) / 60
 if dmf1.group(3) == "S":
     lat *= -1 # *= indicates self * so here: lat * -1
     
 ##!!!HOMEWORK
 # make regular expression for longitude (E/W)
 dmf2 = re.match("(\d+)°(\d+\.\d+)'([WE])", "000°29.13'E")
-lon = round(float(dmf2.group(1)) + float(dmf2.group(2)) / 60, 4)
+lon = float(dmf2.group(1)) + float(dmf2.group(2)) / 60
 if dmf2.group(3) == "W":
     lon *= -1 # *= indicates self * so here: lon * -1
 
 # make regular expressions for the other format
 dmf3 = re.match("(\d+)°(\d+)'(\d+)\"([NS])", "54°00'04\"S")
 minutes = dmf3.group(2) + "." + dmf3.group(3)
-lat2 = round(float(dmf3.group(1)) + float(minutes) / 60,4)
+lat2 = float(dmf3.group(1)) + float(minutes) / 60
 if dmf3.group(4) == "S":
     lat2 *= -1 # *= indicates self * so here: lat * -1
 
 dmf4 = re.match("(\d+)°(\d+)'(\d+)\"([EW])", "000°00'01\"E")
 minutes = dmf4.group(2) + "." + dmf4.group(3)
-lon2 = round(float(dmf4.group(1)) + float(minutes) / 60, 4)
+lon2 = float(dmf4.group(1)) + float(minutes) / 60
 if dmf4.group(4) == "W":
     lon2 *= -1 # *= indicates self * so here: lat * -1
 
@@ -178,16 +178,46 @@ stations["lon"] = np.nan
 for i, station in stations.iterrows():
     ## i = index#, station = all info of that row
     try:
-        stations.loc[i, "lat"] = float(stations.loc[i, "Latitude"])
-        stations.loc[i, "lon"] = float(stations.loc[i, "Longitude"])
+        lat = float(stations.loc[i, "Latitude"])
+        lon = float(stations.loc[i, "Longitude"])
         ##try this, if it doesn't work to make a float, continue with except)
     except:
         pass
           ##do nothing and move on
-          
+    try:
+        dmf = re.match("(\d+)°(\d+\.\d+)'([NS])", (stations.loc[i, "Latitude"]))
+        lat = float(dmf.group(1)) + (float(dmf.group(2)) / 60)
+        if dmf.group(3) == "S":
+            lat *= -1
+        
+        dmf = re.match("(\d+)°(\d+\.\d+)'([WE])", (stations.loc[i, "Longitude"]))
+        lon = float(dmf.group(1)) + (float(dmf.group(2)) / 60)
+        if dmf.group(3) == "W":
+            lon *= -1
+    except:
+        pass
+    
+    try:
+        dmf = re.match("(\d+)°(\d+)'(\d+)\"([NS])", (stations.loc[i, "Latitude"]))
+        minutes = dmf.group(2) + "." + dmf.group(3)
+        lat = float(dmf.group(1)) + (float(minutes) / 60)
+        if dmf.group(4) == "S":
+            lat *= -1
+        
+        dmf = re.match("(\d+)°(\d+)'(\d+)\"([EW])", (stations.loc[i, "Longitude"]))
+        minutes = dmf.group(2) + "." + dmf.group(3)
+        lon = float(dmf.group(1)) + (float(minutes) / 60)
+        if dmf.group(4) == "W":
+            lon *= -1
+            
+    except:
+        pass
 
+    stations.loc[i, "lat"] = lat
+    stations.loc[i, "lon"] = lon
+    
 # stations.plot.scatter("Longitude", "Latitude")
 #   ##weird plot, because of the symbols in the data
 
-# stations.plot.scatter("lon", "lat")
+stations.plot.scatter("lon", "lat")
 #   ##nice plot, but still missing many data points
