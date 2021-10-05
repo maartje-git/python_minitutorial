@@ -186,12 +186,12 @@ for i, station in stations.iterrows():
           ##do nothing and move on
     try:
         dmf = re.match("(\d+)°(\d+\.\d+)'([NS])", (stations.loc[i, "Latitude"]))
-        lat = float(dmf.group(1)) + (float(dmf.group(2)) / 60)
+        lat = float(dmf.group(1)) + float(dmf.group(2)) / 60
         if dmf.group(3) == "S":
             lat *= -1
         
         dmf = re.match("(\d+)°(\d+\.\d+)'([WE])", (stations.loc[i, "Longitude"]))
-        lon = float(dmf.group(1)) + (float(dmf.group(2)) / 60)
+        lon = float(dmf.group(1)) + float(dmf.group(2)) / 60
         if dmf.group(3) == "W":
             lon *= -1
     except:
@@ -200,16 +200,15 @@ for i, station in stations.iterrows():
     try:
         dmf = re.match("(\d+)°(\d+)'(\d+)\"([NS])", (stations.loc[i, "Latitude"]))
         minutes = dmf.group(2) + "." + dmf.group(3)
-        lat = float(dmf.group(1)) + (float(minutes) / 60)
+        lat = float(dmf.group(1)) + float(minutes) / 60
         if dmf.group(4) == "S":
             lat *= -1
         
         dmf = re.match("(\d+)°(\d+)'(\d+)\"([EW])", (stations.loc[i, "Longitude"]))
         minutes = dmf.group(2) + "." + dmf.group(3)
-        lon = float(dmf.group(1)) + (float(minutes) / 60)
+        lon = float(dmf.group(1)) + float(minutes) / 60
         if dmf.group(4) == "W":
             lon *= -1
-            
     except:
         pass
 
