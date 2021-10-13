@@ -8,8 +8,7 @@ import re #to be able to use regular expressions
 stations = pd.read_table("data/stations.txt", encoding="unicode_escape")
  ## encoding="unicode_escape" <== to work with symbols like °)
 
-
-# #%%
+#%% HW 210917
 # ctd1 = pd.read_csv(
 #     "data/ctd-bottles/ctd-bottles-2-1.csv", 
 #     na_values=-999
@@ -128,7 +127,7 @@ stations = pd.read_table("data/stations.txt", encoding="unicode_escape")
 # #%%
 # ctd1.plot.scatter("salinity", "depth")
 
-#%%
+#%% HW 211008
 ## Parse station information
 #row = stations.iloc[1]  #position 0 is the first
   ##.loc to access a row in a dataframe using index
@@ -229,7 +228,7 @@ stations = pd.read_table("data/stations.txt", encoding="unicode_escape")
 #!!! With try / pass it passes an error silently... 
 #with if, elif else it will raise an error
 
-#%%
+#%% 
 # change all Lon/Lat values in floats instead of strings
 stations["lat"] = np.nan
 stations["lon"] = np.nan
